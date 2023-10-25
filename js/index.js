@@ -1,0 +1,1 @@
+import './codewars/index.js';
