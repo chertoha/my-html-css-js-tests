@@ -22,18 +22,9 @@ function landPerimeter(arr) {
   const arrChecked = [];
 
   function findSiblingsAndCountX(i, j) {
-    // let count = 0;
-
     let perimeter = 4;
-    // console.log('recursion');
 
-    //left
-    // if (j - 1 > 0 && arr[i][j - 1] === X && !getIsPointChecked(arrChecked, i, j - 1)) {
-    //   arrChecked.push([i, j - 1]);
-    //   count += findSiblingsAndCountX(i, j - 1);
-    // }
-
-    if (j - 1 > 0 && arr[i][j - 1] === X) {
+    if (j - 1 >= 0 && arr[i][j - 1] === X) {
       perimeter -= 1;
       if (!getIsPointChecked(arrChecked, i, j - 1)) {
         arrChecked.push([i, j - 1]);
@@ -41,13 +32,7 @@ function landPerimeter(arr) {
       }
     }
 
-    //top
-    // if (i - 1 > 0 && arr[i - 1][j] === X && !getIsPointChecked(arrChecked, i - 1, j)) {
-    //   arrChecked.push([i - 1, j]);
-    //   count += findSiblingsAndCountX(i - 1, j);
-    // }
-
-    if (i - 1 > 0 && arr[i - 1][j] === X) {
+    if (i - 1 >= 0 && arr[i - 1][j] === X) {
       perimeter -= 1;
       if (!getIsPointChecked(arrChecked, i - 1, j)) {
         arrChecked.push([i - 1, j]);
@@ -55,11 +40,6 @@ function landPerimeter(arr) {
       }
     }
 
-    //right
-    // if (j + 1 < arr[i].length && arr[i][j + 1] === X && !getIsPointChecked(arrChecked, i, j + 1)) {
-    //   arrChecked.push([i, j + 1]);
-    //   count += findSiblingsAndCountX(i, j + 1);
-    // }
     if (j + 1 < arr[i].length && arr[i][j + 1] === X) {
       perimeter -= 1;
       if (!getIsPointChecked(arrChecked, i, j + 1)) {
@@ -67,12 +47,6 @@ function landPerimeter(arr) {
         perimeter += findSiblingsAndCountX(i, j + 1);
       }
     }
-
-    // bottom
-    // if (i + 1 < arr.length && arr[i + 1][j] === X && !getIsPointChecked(arrChecked, i + 1, j)) {
-    //   arrChecked.push([i + 1, j]);
-    //   count += findSiblingsAndCountX(i + 1, j);
-    // }
 
     if (i + 1 < arr.length && arr[i + 1][j] === X) {
       perimeter -= 1;
@@ -82,7 +56,6 @@ function landPerimeter(arr) {
       }
     }
 
-    // return count + 1;
     return perimeter;
   }
 
@@ -93,12 +66,7 @@ function landPerimeter(arr) {
 
       if (arr[i][j] !== X) continue;
 
-      //   console.log('X');
-
-      //   const countX = findSiblingsAndCountX(i, j);
       const perimeter = findSiblingsAndCountX(i, j);
-      //   console.log(countX);
-      //   const perimeter = countX * 4 - (countX - 1) * 2;
       totalPerimeter += perimeter;
     }
   }
@@ -120,6 +88,21 @@ console.log(
     'OXOOXX',
   ]),
 );
+
+// console.log(
+//   landPerimeter([
+//     'OXOOOO',
+//     'OXOOOO',
+//     'XXOOOO',
+//     'OXXXOO',
+//     'OOXOOO',
+//     'OOOOOO',
+//     'OOOOOO',
+//     'OOOOOO',
+//     'OOOOOO',
+//     'OOOOOO',
+//   ]),
+// );
 console.log(landPerimeter(['XOOO', 'XOXO', 'XOXO', 'OOXX', 'OOOO']));
 console.log(landPerimeter(['XOOXO', 'XOOXO', 'OOOXO', 'XXOXO', 'OXOOO']));
 console.log(landPerimeter(['XXXXXOOO', 'OOXOOOOO', 'OOOOOOXO', 'XXXOOOXO', 'OXOXXOOX']));
